@@ -1,0 +1,25 @@
+﻿@model UsuarioModel
+@{
+    Layout = null;
+}
+<link href="~/css/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<div class="container">
+    <div class="Header">
+
+        <form asp-action="NuevaContraseña" asp-controller="NuevaContraseña" method="post">
+            <div>
+                <label for="Nombre" class="form-label">Nombre De Usuario: </label>
+                <input type="text" asp-for="Nombre" class="form-control" />
+            </div>
+            <div>
+                <label for="Contrasena" class="form-label">Nueva Contraseña: </label>
+                <input type="password" asp-for="Contrasena" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Cambio</button>
+        </form>
+
+
+    </div>
+
+</div>

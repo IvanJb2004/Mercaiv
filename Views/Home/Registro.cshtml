@@ -1,0 +1,114 @@
+@model RegistrarModel
+@{
+}
+
+<div class="container">
+    @{
+Layout=null;}
+@if(TempData["SucessMessage"]!=null)
+{
+    <div class="alert alert-success">
+        @TempData["SucessMessage"]
+        </div>
+}
+
+    <link href="~/css/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Autenticar.css" asp-append-version="true" />
+   
+    <div class="header">
+        
+
+            <a href="#" class="logo">
+                <img src="img/mercaiv.jpg" alt="logo" class="logo-img">
+            </a>
+            
+            <nav>
+            <a asp-controller="Home" asp-action="Index">Iniciar Sesion</a>
+            </nav>
+        </div>
+
+    <h1 style="text-align:center"> Registro De Usuario</h1>
+
+
+    <div class="Body">
+        <form asp-action="Registro" asp-controller="Usuario" method="post" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="row">
+
+            <div class="col-lg-5">
+                <div>
+                    <label for="Nombre" class="form-label"> Nombre:</label><br/>
+                    <input type="text" class="form-control" asp-for="Nombre">
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <label for="Apellido" class="form-label">Apellido</label><br/>
+                    <input type="text" class="form-control" asp-for="Apellido">
+                    <span asp-validation-for="Apellido" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <label for="Identificacion" class="form-label">Numero De Identificacion</label><br>
+                    <input type="number" class="form-control" asp-for="Identificacion">
+                    <span asp-validation-for="Identificacion" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <label for="Correo" class="form-label">Correo Electronico</label><br>
+                    <input type="email" class="form-control" asp-for="Correo">
+                    <span asp-validation-for="Correo" class="text-danger"></span>
+                </div>
+
+
+            </div>
+            <div class="col-2">
+
+            </div>
+           
+
+           <div class="col-lg-5">
+                <div>
+                    <label for="Fecha" class="form-label">Fecha de Nacimiento</label><br>
+                        <input type="date" class="form-control" max="@DateTime.Now.AddYears(-18).ToString("yyyy-MM-dd")" asp-for="Fecha">
+                    <span asp-validation-for="Fecha" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <label for="Genero" class="form-label"> Genero</label> <br/>
+                    <select class="form-control" asp-for="Genero" >
+                        <option value=""></option>
+                        <option value=" Uno">Hombre </option>
+                        <option value="dos"> Mujer </option>
+                    </select>
+                </div>
+
+                <div >
+                    <label for="Contraseña" class="form-label">Contraseña</label><br/>
+                    <input type="password" class="form-control" asp-for="Contrasena"/>
+                    <span asp-validation-for="Contrasena" class="text-danger"></span>
+                
+                </div>
+
+                <div>
+                    <label for="Confirmar" class="form-label">Confirmar Contraseña</label><br/>
+                    <input type="password" class="form-control" asp-for="Confirmar">
+                    <span asp-validation-for="Confirmar" class="text-danger"></span>
+                </div>
+
+            </div>
+    
+                <button type="submit" value="Guardar">Registrar</button>
+               
+            </div>
+            </form>
+            <form asp-action="Principal" asp-controller="Home" method="post">
+            <button type="submit" value="Salir">Salir</button>
+            </form>
+    </div>
+
+    <script src="js/js/bootstrap.bundle.min.js"></script>
+    </div>
+

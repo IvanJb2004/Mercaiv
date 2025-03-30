@@ -1,0 +1,70 @@
+﻿@model List<Mercaiv.Models.carroitem>
+@{
+    Layout = null;
+
+    <link href="~/css/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    ViewData["Title"] = "Carrito de Compras";
+decimal total = Model.Sum(item => (item?.Producto?.Preciov ?? 0) * (item?.Cantidad ?? 0));
+}
+<h2>Carrito</h2>
+@if(Model.Count == 0)
+{
+    <p>No Tiene Productos En Tu Carrito.</p>
+    <a href="@Url.Action("Principal","Home")" class="btn btn-primary">Ver Productos</a>
+}
+else
+{
+    <table class="table table-striped">
+    <thead>
+    <tr>
+    <th>Imagen</th>
+    <th> Producto</th>
+    <th>Descripcion</th>
+    <th> Cantidad</th>
+    <th> Precio Unitario</th>
+    <th> Subtotal</th>
+    <th>Acciones</th>
+    
+    </thead>
+    <tbody>
+    @foreach(var item in Model)
+            {
+                <tr>
+                <td><img src="@item.Producto.urlimagen" /></td>
+                <td>@item.Producto.Nombre</td>
+                <td>@item.Producto.Descripcion</td>
+                   
+                
+                <td>
+                        <form asp-action="ActualizarItem" asp-controller="Carrito" method="post" style="display:inline;">
+                            <input type="hidden" name="ProductoId" value="@item.Producto.idProducto" />
+                <input type="number" name="Cantidad" value="@item.Cantidad" min="1" class="form-control" style="width:60px;" />
+                <button type="submit" class="btn btn-sm btn-secondary">Actualizar</button>
+                </form>
+                </td>
+                <td>@item.Producto.Preciov.ToString("C2")</td>
+                <td>@((item.Producto.Preciov * item.Cantidad).ToString("C2"))</td>
+                <td>
+                        <form asp-action="Eliminar" asp-controller="Carrito" method="post" style="display:inline;">
+                            <input type="hidden" name="ProductoId" value="@item.Producto.idProducto" />
+                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+                </td>
+                </tr>
+            }
+        </tbody>
+
+        <tfoot>
+        <tr>
+        <td colspan="4" class="text-right"> <strong>Total:</strong> </td>
+        <td>@total.ToString("C2")</td>
+        <td></td>
+        </tr>
+        </tfoot>
+    </table>
+    <div class="text-right">
+    <a href="@Url.Action("Principal","Home")" class="btn btn-success">Volver a la Tienda</a>
+    </div>
+}

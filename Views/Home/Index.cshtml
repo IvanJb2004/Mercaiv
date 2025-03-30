@@ -1,0 +1,91 @@
+﻿@model UsuarioModel
+@{
+      Layout = null;
+}
+
+
+<head>
+
+    
+        <link href="~/css/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/Mercaiv.styles.css" asp-append-version="true" />
+        <title>Document</title>
+      
+
+    
+
+
+</head>
+<body>
+
+    <div class="conteiner">
+        <div class="row navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <div class="col-lg-11">
+            </div>
+            <div class="row align-items-end">
+                <div class="col-lg-2">
+                </div>
+
+                <div class=" col-lg-3 text-center">
+                    <img src="~/img/mercaiv.jpg" width="350" height="350" />
+                    <h1>
+                        Ingresa tu usuario
+                        y contraseña para ingresar
+                        a Mercaiv
+                    </h1>
+
+                </div>
+                <div class="col-lg-2">
+                </div>
+                <div class="col-lg-4  border px-4">
+
+
+                    <form asp-action="Login" asp-controller="Usuario" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                        <div class="mb-2 mx-uto p-4" style="width: 350px;">
+                            <label for="<Nombre" class="form-label ">Usuario</label><br>
+                            <input type="text" asp-for="Nombre"  class="form-control"/>
+                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-2 mx-uto p-4" style="width: 350px;">
+                            <label for="contraseña" class="form-label ">contraseña</label><br>
+                            <input type="password"  asp-for="Contrasena" class="form-control">
+                            <span asp-validation-for="Contrasena" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid mx-auto p-2" style="width: 350px;">
+                            <button type="submit" class="btn btn-primary">Iniciar Sesion </button>
+                        </div>
+                        @if (TempData["error"] != null )
+                        {
+                            <div style="color:red;">
+                                @TempData["error"]
+
+                            </div>
+                        }
+
+                        <div class="my-3 mx-auto p-2" style="width: 350px;">
+                            <span> No tienes Cuenta? <a asp-controller="home" asp-action="Registro">Registrate</a></span> <br>
+                            <span><a asp-controller="NuevaContraseña" asp-action="NuevaContraseña">Recuperar Contraseña</a></span>
+                        </div>
+
+
+
+                    </form>
+                    @section scripts {
+                        <partial name ="_ValidationScriptsPartial" />
+                    }
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+
+</body> 
+<script src="js/js/bootstrap.bundle.min.js"></script>

@@ -1,0 +1,206 @@
+﻿@model IEnumerable<InsertarProductoModel>
+@{
+    ViewData["Title"] = "Pagina Producto";
+}
+
+<div class="container">
+    @{
+        Layout = null; 
+    }
+    <script src="./js/bootstrap.min.js" ></script>
+    <link href="~/css/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/principalStyle.css" asp-append-version="true" />
+    
+
+    <div class="header">
+
+        <a href="#" class="logo">
+            <img src="img/Proyecto Creador de logotipos (1).png" alt="logo" class="logo-img">
+        </a>
+
+        <nav>
+            <a asp-controller="Home" asp-action="Index" >Iniciar Sesion</a>
+        </nav>
+
+
+    </div>
+   
+        <div class="Slider">
+            <figure>
+         <div class="slide">
+           <img src="~/img/Minotaurus.jpg" alt="" />
+         </div>
+
+            <div class="slide">
+                <img  src="~/img/mercaiv2.jpg" alt="" />
+            </div>
+
+            <div class="slide">
+                <img src="~/img/4a4dd63e1abc8ae1d8e16c3332409100.jpg" alt="" />
+            </div>
+            <div class="slide">
+                <img src="~/img/Naruto.jpg" alt="" />
+            </div>
+        </figure>
+        </div>
+
+    <div class="Body">
+        
+            <div class="row">
+                <form asp-action="carrito" asp-controller="Carrito" method="post">
+            <button type="submit" class="btn btn-sm btn-secondary">Ver Carrito</button>
+            </form>
+
+                @foreach (var  InsertarProductoModel in Model)
+                {
+                <div class="col-md-3 ">
+                    <div class="card" aria-label="1 de 24" style="width: 250px; height:auto; margin-right: 500px;">
+
+                        <img decoding="async" style="width: 250px; height:300PX;" src="@InsertarProductoModel.urlimagen" class="card-img-top" alt="producto 1" />
+                        <div class="card-body">
+
+                            <div class="row" >
+                                  <p class="card-text" >@InsertarProductoModel.Marca</p>
+                                <a  class="poly-component__title" style="font-size:15px" ><b>
+                                        @if (InsertarProductoModel.Nombre.Length>58)
+                                            @InsertarProductoModel.Nombre.Substring(0,58)
+                         
+                                        else
+                                        {
+                                            @InsertarProductoModel.Nombre
+                                        }
+                                    
+                                </b></a>
+                             
+                                <td>
+                                    <form asp-action="carrito" asp-controller="Carrito" method="post" style="display:inline;">
+                                        <input type="hidden" name="ProductoId" value="@InsertarProductoModel.idProducto" />
+                                        <input type="number" name="Cantidad" value="@InsertarProductoModel.Unidades" min="1" class="form-control" style="width:60px;" />
+                                        <button type="submit" class="btn btn-sm btn-secondary">Agregar carrito</button>
+                                    </form>
+                                </td>
+                                <div class="container mt-2">
+
+
+                                    <button type="button" class="btn btn-danger btna form-control" id=@InsertarProductoModel.idProducto> ver mas </button>
+                                </div>
+                               
+
+                          </div>
+
+                           
+
+                             </div>
+                        
+
+                        <!-- The Modal -->
+                        <div class="modal" id="myModal" tabindex="-1" aria-labelledby="modalprodLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Referencia Del Producto</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body" id="modalbody">
+                                        Modal body..
+                                    </div>
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Salir</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                         </div>
+                 </div>
+                }
+
+            </div>
+
+       
+    </div>
+   
+
+    <div class="footer">
+        <div class="row">
+        <div class="col">
+
+                <ul>
+                    <b>
+                    <li> 3142632192</li>
+                    <li>ivanjaramillo120719@gmail.com</li>
+                    <li><a href="https://www.instagram.com/accounts/onetap/?next=%2F"> Instagram</a></li>
+                    <li> <a asp-controller="InfoContacto" asp-action="Contactanos">Formulario de contacto</a></li> </b>
+                </ul>
+
+        </div>
+       
+        </div>
+    </div>
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(document).on('click','.btna',function(){
+               $('#myModal').modal('show');
+                var idProducto = this.id;
+
+               $.ajax({
+                    url: '/Productos/SeleccionarProducto',
+                    type: 'GET',
+                    data: {id:idProducto},
+
+                    
+                    success: function (data) {
+                     
+                        const contenido =`
+                        <div class="row">
+                    
+                        <div class="col">
+                            <img class="w-100 align-item-top m-3" src="${data.urlimagen}"></img>
+                            </div>
+
+                            <div class="col">
+                            9<br> <br> <br>
+                                <div class="ui-pdp-header__title-container" >
+                                                <h1 class="poly-component__title" style="font-size:30px;" ><b>${data.nombre}</b></h1>
+                                            </div>
+                                                 <p style="color:#198754;font-size:20px;font-family:Arial;"><b>$ ${data.preciov}</b></p>
+                                                         <p style="color:black; font-size:15px; font-family:Arial;"> <b  style="color:black; font-size:20px;">cantidad:</b> ${data.unidades} </p>
+                                     </div>
+
+                                     <div class="row">
+                           
+                                <p><b>Color:${data.color}</b></p>
+                                    <p style="font-family:arial"><b>Caracteristica:</b><br>${data.descripcion}</p>
+                                    </div>
+                      
+                
+                       </div>`;
+                        
+                        $('#modalbody').html(contenido);
+
+                        },
+                        error: function (error) {
+                            $('#modalbody').html('error al cargar los datos');
+                            console.error('error en la llamada AJAX:', error);
+                        
+
+                    }
+                });
+            });
+
+        });
+    </script>
+
+</div>
+
+

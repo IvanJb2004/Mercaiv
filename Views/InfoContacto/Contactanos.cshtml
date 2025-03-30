@@ -1,0 +1,45 @@
+﻿@model InfoContactoModel
+@{
+
+}
+@{
+    Layout = null;
+}
+<div class="container">
+    <link href="~/css/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/Autenticar.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <div class="header">
+       <h1> CONTACTANOS</h1>
+    </div>
+
+    <div class="Body">
+        <form asp-action="Contactanos" asp-controller="InfoContacto" method="post">
+
+            <div>
+                <label class="col-form-label" for="Nombre">Nombre:</label>
+                <input  type="text" class="form-control" placeholder="Nombre" asp-for="Nombre" />
+            </div>
+
+            <div>
+                <label class="form-label" for="Correo">Correo Electronico:</label>
+                <input type="email" class=" form-control" placeholder="Correo Electronico" asp-for="Correo"/>
+            </div>
+
+            <div>
+                <label class="form-label" for="Mensaje">Mensaje:</label>
+                <textarea class="form-control" rows="6" cols="150" asp-for="Mensaje"></textarea>
+            </div>
+
+            <button type="submit" value="enviar">Enviar</button>
+            
+
+        </form>
+        <form asp-action="Principal" asp-controller="Home" method="post">
+        <button type="submit" value="Salir">Salir</button>
+        </form>
+
+        <a href="/pdfContactanos/ListaContactanos" target="_blank" class="btn btn-primary">Generar PDF</a>
+    </div>
+</div>

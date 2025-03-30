@@ -1,0 +1,39 @@
+﻿@model RegistrarModel
+@{
+
+}
+<div class="Container">
+    @{
+    Layout = null;
+
+    <link href="~/css/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+}
+
+<div class="header" style="text-align:center">
+
+        <img src="~/img/mercaiv.jpg" width="170" height=" 150" />
+        <h1><b>RECUPERAR CONTRASEÑA</b></h1>
+</div>
+
+<div class="Body" >
+
+    <form asp-action="Index" asp-controller="Home" method="post" style="text-align:center">
+     
+    <div >
+        <label for="Usuario" class="form-label">Usuario:</label>
+        <input class="form-control" type="text" asp-for="Nombre" placeholder="Usuario"/>
+
+    </div>
+
+    <div>
+        <label for="Identificacion" class="form-label">Identificacion:</label>
+        <input class="form-control" type="text" asp-for="Identificacion" placeholder="Identificacion"/>
+    </div>
+
+    <button type="submit" value="Enviar">Enviar</button>
+    <button type="submit" value=" Salir">Salir</button>
+           
+        </form>
+</div>
+</div>

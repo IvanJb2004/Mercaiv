@@ -1,0 +1,126 @@
+﻿@model InsertarProductoModel
+@{
+
+}
+@{
+    Layout = null;  
+}
+@if (TempData["SucessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SucessMessage"]
+    </div>
+}
+<div Container>
+
+    <link href="~/css/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Producto.css" asp-append-version="true" />
+
+
+
+    <div class="Header">
+        <a href="#" class="logo">
+            <img src="img/mercaiv.jpg" alt="logo" class="logo-img">
+        </a>
+
+        <h1 style="text-align:center;">PRODUCTOS</h1>
+    </div>
+   
+    <div class="Body" >
+
+        <form asp-action="Producto" asp-controller="Productos" method="post" enctype="multipart/form-data" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-lg-1">
+                </div>
+            <div class="col-lg-4">
+           
+            <div>
+                <label for="Codigo" class="form-label">Codigo:</label>
+                <input type="text"  asp-for="Codigo" class="form-control" /> 
+                <span asp-validation-for="Codigo" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label for="Nombre" class="form-label">Nombre:</label>
+                <input type="text" asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label for="Descripcion" class="form-label">Descripcion:</label>
+                <textarea asp-for="Descripcion" class="form-control" rows="6" cols="150"></textarea>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label for="Unidades" class="form-label">Unidades:</label>
+                <input type="text" asp-for="Unidades" class="form-control" />
+                <span asp-validation-for="Unidades" class="text-danger"></span>
+              </div>
+
+              <div>
+                  <label for="PrecioV" class="form-label">Precio Venta:</label>
+                  <input type="text" asp-for="Preciov" class="form-control"/>
+                  <span asp-validation-for="Preciov" class="text-danger"></span>
+              </div>
+            </div>
+                <div class="col-lg-1">
+                </div>
+           
+            <div class="col-lg-4">
+              <div>
+                <label for="Estado" class="form-label">Estado</label>
+                <select class="form-control" asp-for="Estado">
+                    <option value=""></option>
+                    <option value=""> Activo</option>
+                    <option value=""> Inactivo</option>
+                </select>
+                </div>
+
+             <div>
+                <label for="Imagen" class="form-label">Seleccionar Imagen:</label>
+                <input type="file"  class="Form-Control" asp-for="Imagen" />
+                <span asp-validation-for="Imagen" class="text-danger"></span>
+                
+            </div>
+
+            <div>
+                <label for="Marca" class="form-label">Marca del Producto:</label>
+                <input type="text" class="form-control" asp-for="Marca" />
+                
+            </div>
+
+            <div>
+                <label for="Modelo" class="form-label">Modelo del Producto:</label>
+                    <input type="text" class="form-control" asp-for="Modelo" />
+                    
+            </div>
+
+            <div>
+            <label for="Color" class="form-label">Color:</label>
+            <input type="text" class="form-control" asp-for="Color"/>
+            </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-2">
+
+                </div>
+            <div class="col-lg-3">
+                <button type="submit" class="btn btn-primary custom-button">Guardar</button>
+                </div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-3">
+                <button type="submit" class="btn btn-primary custom-button">Salir</button>
+                </div>
+            </div>
+            </div>
+        </form>
+
+    </div>
+    <script src="js/js/bootstrap.bundle.min.js"></script>
+    </div>
+
+

@@ -1,0 +1,90 @@
+﻿@model ProveedorModel
+@{
+    Layout = null;
+    <link href="~/css/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Producto.css" asp-append-version="true" />
+}
+<div container>
+<div class="header">
+    <a href="#" class="logo">
+        <img src="img/Proyecto Creador de logotipos (1).png" alt="logo" class="logo-img">
+    </a>
+
+    <nav>
+        <a asp-controller="Home" asp-action="Index">Iniciar Sesion</a>
+    </nav>
+</div>
+
+<div class="body">
+  <form asp-action="Proveedor" asp-controller="Proveedor" method="post">
+      <div class="row">
+          <div class="col-lg-6">
+
+              <div>
+              <label for="Codigo" class="form-label">Codigo:</label>
+              <input type="text" asp-for="Codigo" class="form-control"/>
+              </div>
+
+           <div>
+               <label for="Cantidad" class="form-label">telefono:</label>
+               <input asp-for="Telefono" type="text" class="form-control"/>
+           </div>
+
+           <div>
+               <label for="Subtotal" class="form-label">direccion:</label>
+               <input asp-for="Direccion" class="form-control" type="text"/>
+           </div>
+
+                    <div>
+                        <label for="Subtotal" class="form-label">Nombre de la Empresa:</label>
+                        <input asp-for="Nempresa" class="form-control" type="text" />
+                    </div>
+
+          </div>
+
+         <div class="col-lg-6">
+
+                <div>
+                    <label for="Nombre" class="form-label">Nombre:</label>
+                    <input asp-for="Nombre" class="form-control" type="text"/>
+                </div>
+
+                    <div>
+                        <label for="Nombre" class="form-label">Apellido:</label>
+                        <input asp-for="Apellido" class="form-control" type="text" />
+                    </div>
+                <div>
+                    <label for="Unidades" class="form-label">Correo Electronico:</label>
+                    <input asp-for="Correo" class="form-control" type="email"/>
+
+                </div>
+         </div>
+      </div>
+      <div>
+                <button type="submit" class="btn btn-primary custom-button">Guardar</button>
+      </div>
+  </form>
+</div>
+<div class="footer">
+
+        <div class="row">
+            <div class="col">
+
+                <ul>
+                    <b>
+                        <a href="/pdfInventario/ListaInventario" target="_blank" class="btn btn-primary">Generar PDF</a>
+                    <li> 3142632192</li>
+                    <li>ivanjaramillo120719@gmail.com</li>
+                    <li><a href="https://www.instagram.com/accounts/onetap/?next=%2F"> Instagram</a></li>
+                    <li> <a asp-controller="InfoContacto" asp-action="Contactanos">Formulario de contacto</a></li> 
+                    <li> <a asp-controller="Productos" asp-action="Producto">Registrar producto</a></li>
+                    <li> <a asp-controller="Home" asp-action="Principal">Index</a></li> </b>
+                </ul>
+
+            </div>
+
+        </div>
+
+</div>
+</div>
